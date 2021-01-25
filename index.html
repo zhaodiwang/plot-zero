@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<!--        <script src="https://d3js.org/d3.v6.min.js"></script>-->
+<!--        <script src="https://unpkg.com/d3-simple-slider"></script>-->
+        <script src="chart.js"></script>
+<!--        <script src="slider.js"></script>-->
+<!--        <script src="map.js"></script>-->
+        <link rel="stylesheet" href="main.css">
+
+
+
+        <link
+                rel="stylesheet"
+                href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+                integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+                crossorigin="anonymous"
+        />
+    </head>
+
+    <body>
+    <h1>Indexical Surface of Plot-Zero</h1>
+    <h2>Mapping the Dynamic Atmospheric Environment of the Urban Fabric</h2>
+    <div class="button_selector">
+        <h3>Choose the index you would like to review:</h3>
+        <button button type="button" class="btn btn-secondary btn-sm" id="button0">Temperature</button>
+        <button button type="button" class="btn btn-secondary btn-sm" id="button1">CO2</button>
+        <button button type="button" class="btn btn-secondary btn-sm" id="button2">Humidity</button>
+        <button button type="button" class="btn btn-secondary btn-sm" id="button3">Solar Radiation</button>
+    </div>
+
+    <div id='myDiv'></div>
+    <div id="mapDiv"></div>
+    <div id='myDiv-slider'></div>
+
+        <div class="row align-items-center">
+            <div class="col-sm-2"><p id="value-step"></p></div>
+            <div class="col-sm"><div id="slider-step"></div></div>
+        </div>
+
+        <div id="matrix"></div>
+
+        <div id="brush"></div>
+
+    </body>
+</html>
