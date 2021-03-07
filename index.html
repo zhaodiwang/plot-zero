@@ -2,48 +2,129 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
+        <title>Sensing the Landscape</title>
         <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-<!--        <script src="https://d3js.org/d3.v6.min.js"></script>-->
-<!--        <script src="https://unpkg.com/d3-simple-slider"></script>-->
         <script src="chart.js"></script>
-<!--        <script src="slider.js"></script>-->
-<!--        <script src="map.js"></script>-->
+        <!--    <script src="chart2.js"></script>-->
+
         <link rel="stylesheet" href="main.css">
-
-
-
-        <link
-                rel="stylesheet"
-                href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-                integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-                crossorigin="anonymous"
-        />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
     </head>
 
     <body>
-    <h1>Indexical Surface of Plot-Zero</h1>
-    <h2>Mapping the Dynamic Atmospheric Environment of the Urban Fabric</h2>
-    <div class="button_selector">
-        <h3>Choose the index you would like to review:</h3>
-        <button button type="button" class="btn btn-secondary btn-sm" id="button0">Temperature</button>
-        <button button type="button" class="btn btn-secondary btn-sm" id="button1">CO2</button>
-        <button button type="button" class="btn btn-secondary btn-sm" id="button2">Humidity</button>
-        <button button type="button" class="btn btn-secondary btn-sm" id="button3">Solar Radiation</button>
-    </div>
-
-    <div id='myDiv'></div>
-    <div id="mapDiv"></div>
-    <div id='myDiv-slider'></div>
-
-        <div class="row align-items-center">
-            <div class="col-sm-2"><p id="value-step"></p></div>
-            <div class="col-sm"><div id="slider-step"></div></div>
+        <!--title-->
+        <div class="row">
+            <h1>Indexical Surface of Plot-Zero</h1>
+        </div>
+        <div class="row">
+            <h2>Mapping the Dynamic Atmospheric Environment of the Urban Fabric</h2>
         </div>
 
-        <div id="matrix"></div>
+        <!--visualization-->
+        <div class="row">
+            <!--climate plot-->
+            <div class="column" id="overall_climate">
+                <div class="button_selector">
+                    <h3>Choose the index you would like to review:</h3>
+                    <button button type="button" class="btn btn-secondary btn-sm" id="btn0">🌡️ Temperature</button>
+                    <button button type="button" class="btn btn-secondary btn-sm" id="btn1">🔥 CO2</button>
+                    <button button type="button" class="btn btn-secondary btn-sm" id="btn2">💧 Humidity</button>
+                    <button button type="button" class="btn btn-secondary btn-sm" id="btn3">☀️ Solar Radiation</button>
+                    <input type="checkbox" id="checkbox" onclick="Myfunction()">Weekly Average
+                    <br>
+                </div>
+                <div id='myDiv1'></div>
+            </div>
 
-        <div id="brush"></div>
+            <!--individual plot-->
+            <div class="column" id="individual_climate">
+                <div class="button_selector">
+                    <h3>Choose the subject you would like to review their 'happy zone':</h3>
+                    <button button type="button" class="btn btn-secondary btn-sm" id="button00" >🌳 Trees </button>
+                    <button button type="button" class="btn btn-secondary btn-sm" id="button03">🌱 Grass </button>
+                    <button button type="button" class="btn btn-secondary btn-sm" id="button01">👾 Human </button>
+                    <button button type="button" class="btn btn-secondary btn-sm" id="button02">🐦 Birds </button>
+                    <button button type="button" class="btn btn-secondary btn-sm" id="button04" class="recommend">👍 Recommended </button>
+                    <p id="tree_text" style="display:none" class="caption">Tree Happy Range: <br>Temperature: 23-27C° CO2: 3%-4%  Humidity: 30%-50%  Solar Radiation: 130-150 Wh/m2</p>
+                    <p id="average" style="display:none" class="caption">The plot below represents the weekly average level.</p>
 
+
+                </div>
+                <div id='myDiv2'></div>
+            </div>
+        </div>
+
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <script src="https://unpkg.com/tippy.js@6"></script>
+
+        <!--tooltip-->
+        <script>
+            // With the above scripts loaded, you can call `tippy()` with a CSS
+            // selector and a `content` prop:
+            tippy('#button00', {
+                    content: '<strong>Tree Happy Range </strong>' +
+                        '<br><br>' +
+                        '<p class="tooltip_text">' +
+                        'Temperature: 23-27C° ' +
+                        '<br>CO2: 3%-4%  ' +
+                        '<br>Humidity: 30%-50%  ' +
+                        '<br>Solar Radiation: 130-150 Wh/m2' +
+                        '</p>',
+                    allowHTML: true,
+                    placement:'bottom',
+            },);
+            tippy('#button01', {
+                content: '<strong>Human Happy Range </strong>' +
+                    '<br><br>' +
+                    '<p class="tooltip_text">' +
+                    'Temperature: 23-27C° ' +
+                    '<br>CO2: 3%-4%  ' +
+                    '<br>Humidity: 30%-50%  ' +
+                    '<br>Solar Radiation: 130-150 Wh/m2' +
+                    '</p>',
+                allowHTML: true,
+                placement:'bottom',
+            });
+            tippy('#button02', {
+                content: '<strong>Bird Happy Range </strong>' +
+                    '<br><br>' +
+                    '<p class="tooltip_text">' +
+                    'Temperature: 23-27C° ' +
+                    '<br>CO2: 3%-4%  ' +
+                    '<br>Humidity: 30%-50%  ' +
+                    '<br>Solar Radiation: 130-150 Wh/m2' +
+                    '</p>',
+                allowHTML: true,
+                placement:'bottom',
+            });
+            tippy('#button03', {
+                content: '<strong>Grass Happy Range </strong>' +
+                    '<br><br>' +
+                    '<p class="tooltip_text">' +
+                    'Temperature: 23-27C° ' +
+                    '<br>CO2: 3%-4%  ' +
+                    '<br>Humidity: 30%-50%  ' +
+                    '<br>Solar Radiation: 130-150 Wh/m2' +
+                    '</p>',
+                allowHTML: true,
+                placement:'bottom',
+            });
+            tippy('#button04', {
+                content: '<strong>Recommended Happy Range </strong>' +
+                    '<br><br>'+
+                    '<p class="tooltip_text">' +
+                    'Temperature: 23-27C° ' +
+                    '<br>CO2: 3%-4%  ' +
+                    '<br>Humidity: 30%-50%  ' +
+                    '<br>Solar Radiation: 130-150 Wh/m2' +
+                    '</p>',
+                allowHTML: true,
+                placement:'bottom',
+            });
+        </script>
     </body>
 </html>

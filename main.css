@@ -1,4 +1,4 @@
-p{
+p, label{
     color: white;
 }
 
@@ -6,16 +6,8 @@ body {
     /*color: #222 !important;*/
     font-size: 1em;
     line-height: 1.4;
+    color: white !important;
     background-image: linear-gradient(to right, #1f1f1f 0%, #1f1f1f 100%) !important;
-}
-
-
-#cbbg{
-    transform: translate(30,100) !important;
-}
-
-#g-gtitle{
-    transform: translate(500,100) !important;
 }
 
 h1{
@@ -40,8 +32,6 @@ h3{
 .button_selector{
     margin-top: 2.5vh;
     margin-left: 3vw;
-
-
 }
 
 .btn{
@@ -58,3 +48,40 @@ h3{
     background-color: #4c65af; /* Green */
     color: white;
 }
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}
+
+#checkbox{
+    margin-left: 2rem;
+    font-size: 12px !important;
+}
+.caption{
+    margin-top: 1rem;
+    font-size: 12px;
+}
+
+.recommend{
+    border: none;
+    background: white;
+    color: #5183f5;
+    border: 2px dashed #5183f5;
+    will-change: opacity;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 4px;
+    -webkit-transition: background 0.2s,color 0.1s;
+    transition: background 0.2s,color 0.1s;
+}
+
+.tooltip_text{
+    font-size: 12px;
+    align-content: center;
+}
+
